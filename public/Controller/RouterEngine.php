@@ -22,8 +22,11 @@ class RouterEngine{
         include(APP."lib".DS."tsp.php");
         $this->TSP = new TSP;
     
+ 
         $this->__addLocationsToTSP($routeMatrix['rows']);
      //   $this->showDetail($this->TSP);
+     //   common::log($this->TSP->routes());
+
         $second_of_min = 60;
         $output = array(
             'status'=>ROUTE_API_STATUS_SUCCESS,
@@ -57,7 +60,7 @@ class RouterEngine{
         
         $routeMatrix =  $engine->getRouteByPolyline($polyline);
        //$routeMatrix =  $engine->getRoute($inputPath);
-
+//common::log($routeMatrix);
         if($routeMatrix===false){
             $this->__updateTokenResult(array(
                 'status'=>ROUTE_API_STATUS_FAILURE,
