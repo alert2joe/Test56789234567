@@ -1,3 +1,4 @@
+<?php phpinfo();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +61,7 @@ Max marker :4
 <button type="button" onclick ='getToken()' class="btn btn-primary btn-xs">get token</button>
 <span class='getTokenResult'></span>
 </p>
-Auto track token (<span class='autoTrackCount'>0</span>)
+Auto track token per second (<span class='autoTrackCount'>0</span>)
 <textarea class="autoTrack form-control" rows="8"></textarea>
 </div>
 
