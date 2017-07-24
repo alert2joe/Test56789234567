@@ -1,10 +1,11 @@
 <?php
 
-
 define("APP","/application/public/");
 define("DS","/");
 
  include(APP."Config".DS."config.php");
+ include(APP."lib".DS."appRouter.php");
+ include(APP."Config".DS."router.php");
  include(APP."lib".DS."common.php");
 
 
@@ -16,6 +17,7 @@ define("DS","/");
     echo '</pre>';
  }
 }
+
  if (!function_exists('stripslashes_deep')) {
 	function stripslashes_deep($values) {
 		if (is_array($values)) {
@@ -29,8 +31,9 @@ define("DS","/");
 	}
 
 }
-
-function isJson($string) {
- json_decode($string);
- return (json_last_error() == JSON_ERROR_NONE);
+if (!function_exists('isJson')) {
+	function isJson($string) {
+	json_decode($string);
+	return (json_last_error() == JSON_ERROR_NONE);
+	}
 }

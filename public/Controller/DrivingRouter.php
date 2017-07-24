@@ -13,7 +13,7 @@ class DrivingRouter{
 
             $data = common::$request['post']['paths'];
             $token = common::genUUID();
-            $path = "RouterEngine";
+            $path = "/RouterEngine";
             $params = array(
                 'session_id'=>session_id(),
                 'UUID'=>$token,

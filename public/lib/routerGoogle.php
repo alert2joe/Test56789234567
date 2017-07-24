@@ -25,6 +25,7 @@ class routeGoogle extends routeApi{
         if(isJson($json)==false){
             return false;
         }
+     
         $this->apiResult = json_decode($json,1);
         return $this->apiResult;
 
@@ -41,7 +42,8 @@ class routeGoogle extends routeApi{
             'key' => GOOGLE_API_KEY
         );
         $url='https://maps.googleapis.com/maps/api/distancematrix/json?';
-       return file_get_contents($url.http_build_query($data));
+     
+       return @file_get_contents($url.http_build_query($data));
 
 
    }

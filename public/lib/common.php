@@ -23,15 +23,15 @@ class common{
     static function callPhpAsynchronous($path,$params=array()){
          $paramsJson = urlencode(json_encode($params));
          
-         $path = urlencode(APP.$path);
+         $path = urlencode($path);
          $fp= popen("php ".APP."cli.php $path $paramsJson > /dev/null &","r");
 
 
     }
 
-    static function Dispatcher($routerLogic){
-        self::_processRequest();
-        $routerLogic();
+    static function Dispatcher(){
+       self::_processRequest();
+       appRouter::apply();
     }  
  
 
@@ -41,7 +41,7 @@ class common{
         $cliData = null;
         $postData = null;
         if(php_sapi_name() ==='cli' && isset($_SERVER['argv'])){
-            $cliData = $_SERVER['argv'];
+            $cliData = json_decode(urldecode($_SERVER['argv'][2]),1);
         }
         if ($_POST) {
             $postData = $_POST;

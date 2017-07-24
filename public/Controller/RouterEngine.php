@@ -16,7 +16,7 @@ class RouterEngine{
         $engine = routeApi::getApi(ROUTE_API);
         
         $routeMatrix = $this->__routeMatrix($inputPath,$engine);
-        
+         
         $this->__checkInValidWaypoint($routeMatrix['rows'][0]);
         
         include(APP."lib".DS."tsp.php");
@@ -53,14 +53,11 @@ class RouterEngine{
         
     }
     private function __routeMatrix($inputPath,$engine){
-        // common::log($inputPath);
+      
         $polyline = Polyline::encode($inputPath);
-        //  common::log($encoded);
-        // exit();
-        
         $routeMatrix =  $engine->getRouteByPolyline($polyline);
        //$routeMatrix =  $engine->getRoute($inputPath);
-//common::log($routeMatrix);
+
         if($routeMatrix===false){
             $this->__updateTokenResult(array(
                 'status'=>ROUTE_API_STATUS_FAILURE,
@@ -130,7 +127,6 @@ class RouterEngine{
         if($errorLog){
             common::log($errorLog);
         }
-        
         common::sessionStartById($this->sid);
         $_SESSION[$this->UUID] = $data;
         exit();
