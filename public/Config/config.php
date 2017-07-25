@@ -1,4 +1,7 @@
 <?php
+
+define("ENABLE_LOG",true);
+
 //define("GOOGLE_API_KEY","AIzaSyDklZABjWfNoMGyIA1z-DQkrQQ7uqE9n1k");
 define("GOOGLE_API_KEY","AIzaSyCcA3y-r-JUTn-hEC_3ysabEJRfgSqAqTw");
 

@@ -1,5 +1,5 @@
 <?php
-class TSP {
+class tsp {
 
 
 	private $locations 	= array();		// all locations to visit

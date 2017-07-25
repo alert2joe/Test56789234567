@@ -1,15 +1,21 @@
 <?php
 
-define("APP","/application/public/");
-define("DS","/");
+
+define("DS",DIRECTORY_SEPARATOR);
+define("APP",DS."application".DS."public".DS);
+
+include(APP."lib".DS."ClassLoader.php");
+$loader = new Symfony\Component\ClassLoader\ClassLoader();
+$loader->addPrefix('', APP.'lib');
+$loader->addPrefix('', APP.'Controller');
+$loader->register();
+
 
  include(APP."Config".DS."config.php");
- include(APP."lib".DS."appRouter.php");
  include(APP."Config".DS."router.php");
- include(APP."lib".DS."common.php");
 
 
-
+// some global function 
  if (!function_exists('pr')) {
  function pr($t){
     echo '<pre>';

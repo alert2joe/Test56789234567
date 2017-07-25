@@ -3,7 +3,7 @@ if(class_exists('getApi')===false){
  //   include(APP."lib".DS."routeApi.php");
 }
 
-class routeGoogle extends routeApi{
+class routerGoogle extends routeApi{
     public $apiResult = null;
     public $TSP = null;
   

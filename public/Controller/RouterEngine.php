@@ -11,15 +11,14 @@ class RouterEngine{
         $this->__initParams($params);
  
         $inputPath = $params['data'];
-        include(APP."lib".DS."routeApi.php");
-        include(APP."lib".DS."Polyline.php");
+
         $engine = routeApi::getApi(ROUTE_API);
         
         $routeMatrix = $this->__routeMatrix($inputPath,$engine);
          
         $this->__checkInValidWaypoint($routeMatrix['rows'][0]);
         
-        include(APP."lib".DS."tsp.php");
+   
         $this->TSP = new TSP;
     
  
@@ -125,6 +124,7 @@ class RouterEngine{
     }
     private function __updateTokenResult($data,$errorLog = false){
         if($errorLog){
+            common::log($data);
             common::log($errorLog);
         }
         common::sessionStartById($this->sid);

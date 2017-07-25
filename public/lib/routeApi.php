@@ -4,8 +4,7 @@ class routeApi{
         static function getApi($api){
             switch ($api) {
                 case 'google':
-                    include(APP."lib".DS."routerGoogle.php");
-                    return routeGoogle::getInstance();
+                    return routerGoogle::getInstance();
                 break;
                 case 'baidu':
                 //TODO :: Suport baidu
