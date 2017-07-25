@@ -16,3 +16,41 @@ Start 2017-07-24 17:52:04
 ? 
 Start 2017-07-24 17:57:38 
 https://maps.googleapis.com/maps/api/distancematrix/json?origins=enc%3Aq%7BigCkt%7DwTrn%40%7EcC%3A&destinations=enc%3Aq%7BigCkt%7DwTrn%40%7EcC%3A&mode=driving&transit=departure_time&key=AIzaSyCcA3y-r-JUTn-hEC_3ysabEJRfgSqAqTw 
+Start 2017-07-25 12:57:59 
+Array
+(
+    [status] => failure
+    [error] => WAYPOINT_INVAILD
+)
+ 
+Start 2017-07-25 12:57:59 
+Array
+(
+    [elements] => Array
+        (
+            [0] => Array
+                (
+                    [distance] => Array
+                        (
+                            [text] => 1 m
+                            [value] => 0
+                        )
+
+                    [duration] => Array
+                        (
+                            [text] => 1 min
+                            [value] => 0
+                        )
+
+                    [status] => OK
+                )
+
+            [1] => Array
+                (
+                    [status] => ZERO_RESULTS
+                )
+
+        )
+
+)
+ 

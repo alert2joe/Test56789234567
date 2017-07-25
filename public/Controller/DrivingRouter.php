@@ -9,7 +9,6 @@ class DrivingRouter{
                 'error'=>$isValid,
                 ));
             }
-            
 
             $data = common::$request['post']['paths'];
             $token = common::genUUID();
@@ -22,7 +21,7 @@ class DrivingRouter{
         
             $_SESSION[$params['UUID']] = array('status'=>ROUTE_API_STATUS_PROGRESS,'timeStamp'=>time());
 
-            $data = common::callPhpAsynchronous($path,$params);
+            common::callPhpAsynchronous($path,$params);
              $this->__response(array(
                 'token'=>$token,
             ));
@@ -34,17 +33,30 @@ class DrivingRouter{
             return GET_TOKEN_ERROR_MSG_ROBOT_CHECK;
                 
         }
-        if(isset(common::$request['post'])==false ||
-             isset(common::$request['post']['paths'])==false ||
-             is_array(common::$request['post']['paths']) == false
+        $r= common::$request;
+        if(isset($r['post'])==false ||
+             isset($r['post']['paths'])==false ||
+             is_array($r['post']['paths']) == false
          ){
              return GET_TOKEN_ERROR_MSG_NO_WAYPOINT;
         }
-        if(count(common::$request['post']['paths'])<2){
-                 return GET_TOKEN_ERROR_MSG_WAYPOINT_MIN_2;
+        if(count($r['post']['paths'])<2){
+                 return GET_TOKEN_ERROR_MSG_WAYPOINT_MIN;
         }
-        if(count(common::$request['post']['paths'])>WAYPOINT_MAX){
-                 return GET_TOKEN_ERROR_MSG_WAYPOINT_MAX_10;
+        if(count($r['post']['paths'])>WAYPOINT_MAX){
+                 return GET_TOKEN_ERROR_MSG_OVER_WAYPOINT_MAX;
+        }
+ 
+        foreach($r['post']['paths'] as $v){
+            if(is_array($v)==false || count($v)!=2){
+                return GET_TOKEN_ERROR_MSG_WAYPOINT_FORMAT_ERROR;  
+            }
+            if(common::isValidLatitude($v[0]) == false){
+                return GET_TOKEN_ERROR_MSG_WAYPOINT_FORMAT_ERROR;
+            }
+            if(common::isValidLongitude($v[1]) == false){
+                return GET_TOKEN_ERROR_MSG_WAYPOINT_FORMAT_ERROR;
+            }
         }
         return true;
     }
@@ -80,14 +92,6 @@ class DrivingRouter{
     }
 
 
-    function getHttpRequestData(){
-        $data = array(
-        array("22.372081", "114.107877"),
-        array("22.284419", "114.159510"),
-        array("22.326442", "114.167811"),
-        );
-        return $data;
-    }
     function robotPrevent(){
         return true;
     }
